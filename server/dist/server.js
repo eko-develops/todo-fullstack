@@ -17,6 +17,7 @@ const typeorm_1 = require("typeorm");
 const Todo_1 = require("./entities/Todo");
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const apollo_server_express_1 = require("apollo-server-express");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, typeorm_1.createConnection)({
         type: "postgres",
@@ -28,6 +29,11 @@ const cors_1 = __importDefault(require("cors"));
         synchronize: true
     });
     const app = (0, express_1.default)();
+    const apolloServer = new apollo_server_express_1.ApolloServer({
+        resolvers: []
+    });
+    yield apolloServer.start();
+    apolloServer.applyMiddleware({ app });
     app.use(express_1.default.json());
     app.use((0, cors_1.default)());
     app.listen(4000, () => {

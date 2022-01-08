@@ -3,6 +3,7 @@ import {createConnection} from "typeorm";
 import { Todo } from "./entities/Todo";
 import express from "express";
 import cors from 'cors';
+import { ApolloServer } from 'apollo-server-express';
 
 (async () => {
 
@@ -17,6 +18,14 @@ import cors from 'cors';
     });
 
     const app = express();
+
+    const apolloServer = new ApolloServer({
+        // schema: ,
+        resolvers: []
+    });
+    await apolloServer.start();
+    apolloServer.applyMiddleware({ app });
+
     app.use(express.json());
     app.use(cors());
 
