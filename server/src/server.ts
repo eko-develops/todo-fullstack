@@ -4,6 +4,8 @@ import { Todo } from "./entities/Todo";
 import express from "express";
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
+import { buildSchema } from "type-graphql";
+import { TodoResolver } from "./resolvers/todo";
 
 (async () => {
 
@@ -20,8 +22,10 @@ import { ApolloServer } from 'apollo-server-express';
     const app = express();
 
     const apolloServer = new ApolloServer({
-        // schema: ,
-        resolvers: []
+        schema: await buildSchema({
+            resolvers: [TodoResolver],
+            validate: false
+        })
     });
     await apolloServer.start();
     apolloServer.applyMiddleware({ app });
