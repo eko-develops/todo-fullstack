@@ -16,6 +16,7 @@ require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const Todo_1 = require("./entities/Todo");
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, typeorm_1.createConnection)({
         type: "postgres",
@@ -28,6 +29,7 @@ const express_1 = __importDefault(require("express"));
     });
     const app = (0, express_1.default)();
     app.use(express_1.default.json());
+    app.use((0, cors_1.default)());
     app.listen(4000, () => {
         console.log(`connected to server on localhost:4000`);
     });
