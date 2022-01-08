@@ -15,5 +15,8 @@ import { Todo } from "./entities/Todo";
     });
 
     console.log('hello world');
-    // await Todo.create({title: "Hello"}).save();
+    // await Todo.create({title: "another", message: "A message", priority: "medium"}).save();
+    // const todos = await Todo.find();
+    // console.log(todos);
+    
 })();
