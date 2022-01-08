@@ -9,15 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
 const typeorm_1 = require("typeorm");
+const Todo_1 = require("./entities/Todo");
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    const connection = yield (0, typeorm_1.createConnection)({
+    yield (0, typeorm_1.createConnection)({
         type: "postgres",
         host: "localhost",
         username: "postgres",
         password: "123123",
         database: "todo_fullstack",
-        entities: []
+        entities: [Todo_1.Todo],
+        synchronize: true
     });
     console.log('hello world');
 }))();
