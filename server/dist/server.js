@@ -8,10 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const Todo_1 = require("./entities/Todo");
+const express_1 = __importDefault(require("express"));
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, typeorm_1.createConnection)({
         type: "postgres",
@@ -22,6 +26,10 @@ const Todo_1 = require("./entities/Todo");
         entities: [Todo_1.Todo],
         synchronize: true
     });
-    console.log('hello world');
+    const app = (0, express_1.default)();
+    app.use(express_1.default.json());
+    app.listen(4000, () => {
+        console.log(`connected to server on localhost:4000`);
+    });
 }))();
 //# sourceMappingURL=server.js.map
