@@ -22,10 +22,6 @@ import cors from 'cors';
 
     app.listen( 4000, () => {
         console.log(`connected to server on localhost:4000`);
-    })
-
-    // await Todo.create({title: "another", message: "A message", priority: "medium"}).save();
-    // const todos = await Todo.find();
-    // console.log(todos);
+    });
 
 })();
