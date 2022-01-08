@@ -15,7 +15,5 @@ import { Todo } from "./entities/Todo";
     });
 
     console.log('hello world');
-    // const todo = Todo.create({title: "Testing"})
-    // await Todo.save(todo);
-
+    // await Todo.create({title: "Hello"}).save();
 })();
