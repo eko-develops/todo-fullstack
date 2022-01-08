@@ -13,7 +13,7 @@ exports.TodoResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 let TodoResolver = class TodoResolver {
     todo() {
-        return 'This is a todo';
+        return "This is a todo";
     }
 };
 __decorate([
