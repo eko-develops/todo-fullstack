@@ -65,6 +65,12 @@ let TodoResolver = class TodoResolver {
             return newTodo;
         });
     }
+    deleteTodo(todoId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Todo_1.Todo.delete(todoId);
+            return true;
+        });
+    }
 };
 __decorate([
     (0, type_graphql_1.Query)(() => [Todo_1.Todo]),
@@ -86,6 +92,13 @@ __decorate([
     __metadata("design:paramtypes", [CreateTodoInput]),
     __metadata("design:returntype", Promise)
 ], TodoResolver.prototype, "createTodo", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => Boolean),
+    __param(0, (0, type_graphql_1.Arg)("todoId", () => type_graphql_1.ID)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], TodoResolver.prototype, "deleteTodo", null);
 TodoResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], TodoResolver);

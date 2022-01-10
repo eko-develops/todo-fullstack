@@ -51,4 +51,11 @@ export class TodoResolver {
 
     return newTodo;
   }
+
+  @Mutation(() => Boolean)
+  async deleteTodo(@Arg("todoId", () => ID) todoId: number): Promise<Boolean> {
+    await Todo.delete(todoId);
+
+    return true;
+  }
 }
