@@ -25,6 +25,19 @@ exports.UserResolver = void 0;
 const Todo_1 = require("../entities/Todo");
 const type_graphql_1 = require("type-graphql");
 const User_1 = require("../entities/User");
+let UpdateUserInput = class UpdateUserInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateUserInput.prototype, "firstName", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateUserInput.prototype, "lastName", void 0);
+UpdateUserInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], UpdateUserInput);
 let UserResolver = class UserResolver {
     users() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -53,6 +66,12 @@ let UserResolver = class UserResolver {
         return __awaiter(this, void 0, void 0, function* () {
             yield Todo_1.Todo.delete({ authorId: userId });
             yield User_1.User.delete(userId);
+            return true;
+        });
+    }
+    updateUser(userId, options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield User_1.User.update({ id: userId }, Object.assign({}, options));
             return true;
         });
     }
@@ -85,6 +104,14 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "deleteUser", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => Boolean),
+    __param(0, (0, type_graphql_1.Arg)("userId", () => type_graphql_1.ID)),
+    __param(1, (0, type_graphql_1.Arg)("options", () => UpdateUserInput)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, UpdateUserInput]),
+    __metadata("design:returntype", Promise)
+], UserResolver.prototype, "updateUser", null);
 UserResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], UserResolver);

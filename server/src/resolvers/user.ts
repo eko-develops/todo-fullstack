@@ -1,6 +1,23 @@
 import { Todo } from "../entities/Todo";
-import { Arg, ID, Mutation, Query, Resolver } from "type-graphql";
+import {
+  Arg,
+  Field,
+  ID,
+  InputType,
+  Mutation,
+  Query,
+  Resolver,
+} from "type-graphql";
 import { User } from "../entities/User";
+
+@InputType()
+class UpdateUserInput {
+  @Field({ nullable: true })
+  firstName: string;
+
+  @Field({ nullable: true })
+  lastName: string;
+}
 
 @Resolver()
 export class UserResolver {
@@ -41,6 +58,16 @@ export class UserResolver {
   async deleteUser(@Arg("userId", () => ID) userId: number): Promise<Boolean> {
     await Todo.delete({ authorId: userId });
     await User.delete(userId);
+
+    return true;
+  }
+
+  @Mutation(() => Boolean)
+  async updateUser(
+    @Arg("userId", () => ID) userId: number,
+    @Arg("options", () => UpdateUserInput) options: UpdateUserInput
+  ): Promise<Boolean> {
+    await User.update({ id: userId }, { ...options });
 
     return true;
   }
