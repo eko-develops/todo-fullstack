@@ -31,6 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "lastName", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(() => [Todo_1.Todo]),
     (0, typeorm_1.OneToMany)(() => Todo_1.Todo, (todo) => todo.author),
     __metadata("design:type", Array)
 ], User.prototype, "todos", void 0);
