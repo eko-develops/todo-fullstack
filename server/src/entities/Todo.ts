@@ -6,7 +6,9 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
 } from "typeorm";
+import { User } from "./User";
 
 @ObjectType()
 @Entity()
@@ -30,6 +32,9 @@ export class Todo extends BaseEntity {
   @Field()
   @Column()
   authorId: number;
+
+  @ManyToOne(() => User, (user) => user.todos)
+  author: User;
 
   @Field()
   @CreateDateColumn()

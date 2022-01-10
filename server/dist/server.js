@@ -21,6 +21,8 @@ const cors_1 = __importDefault(require("cors"));
 const apollo_server_express_1 = require("apollo-server-express");
 const type_graphql_1 = require("type-graphql");
 const todo_1 = require("./resolvers/todo");
+const User_1 = require("./entities/User");
+const user_1 = require("./resolvers/user");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, typeorm_1.createConnection)({
         type: "postgres",
@@ -28,13 +30,13 @@ const todo_1 = require("./resolvers/todo");
         username: "postgres",
         password: process.env.DATABASE_PASSWORD,
         database: "todo_fullstack",
-        entities: [Todo_1.Todo],
+        entities: [Todo_1.Todo, User_1.User],
         synchronize: true,
     });
     const app = (0, express_1.default)();
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: yield (0, type_graphql_1.buildSchema)({
-            resolvers: [todo_1.TodoResolver],
+            resolvers: [todo_1.TodoResolver, user_1.UserResolver],
             validate: false,
         }),
     });

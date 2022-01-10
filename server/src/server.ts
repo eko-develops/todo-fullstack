@@ -7,6 +7,8 @@ import cors from "cors";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { TodoResolver } from "./resolvers/todo";
+import { User } from "./entities/User";
+import { UserResolver } from "./resolvers/user";
 
 (async () => {
   await createConnection({
@@ -15,7 +17,7 @@ import { TodoResolver } from "./resolvers/todo";
     username: "postgres",
     password: process.env.DATABASE_PASSWORD,
     database: "todo_fullstack",
-    entities: [Todo],
+    entities: [Todo, User],
     synchronize: true,
   });
 
@@ -23,7 +25,7 @@ import { TodoResolver } from "./resolvers/todo";
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [TodoResolver],
+      resolvers: [TodoResolver, UserResolver],
       validate: false,
     }),
   });

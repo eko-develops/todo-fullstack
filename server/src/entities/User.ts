@@ -4,9 +4,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Todo } from "./Todo";
 
 @ObjectType()
 @Entity()
@@ -22,6 +24,9 @@ export class User extends BaseEntity {
   @Field()
   @Column()
   lastName: string;
+
+  @OneToMany(() => Todo, (todo) => todo.author)
+  todos: Todo[];
 
   @Field()
   @CreateDateColumn()
