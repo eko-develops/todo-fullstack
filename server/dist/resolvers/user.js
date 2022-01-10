@@ -22,6 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserResolver = void 0;
+const Todo_1 = require("../entities/Todo");
 const type_graphql_1 = require("type-graphql");
 const User_1 = require("../entities/User");
 let UserResolver = class UserResolver {
@@ -29,6 +30,13 @@ let UserResolver = class UserResolver {
         return __awaiter(this, void 0, void 0, function* () {
             const users = yield User_1.User.find({ relations: ["todos"] });
             return users;
+        });
+    }
+    user(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield User_1.User.findOne({ id: userId }, { relations: ["todos"] });
+            console.log(user);
+            return user;
         });
     }
     createUser(firstName, lastName) {
@@ -41,6 +49,13 @@ let UserResolver = class UserResolver {
             return true;
         });
     }
+    deleteUser(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Todo_1.Todo.delete({ authorId: userId });
+            yield User_1.User.delete(userId);
+            return true;
+        });
+    }
 };
 __decorate([
     (0, type_graphql_1.Query)(() => [User_1.User]),
@@ -49,6 +64,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "users", null);
 __decorate([
+    (0, type_graphql_1.Query)(() => User_1.User, { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)("userId", () => type_graphql_1.ID)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UserResolver.prototype, "user", null);
+__decorate([
     (0, type_graphql_1.Mutation)(() => Boolean),
     __param(0, (0, type_graphql_1.Arg)("firstName", () => String)),
     __param(1, (0, type_graphql_1.Arg)("lastName", () => String)),
@@ -56,6 +78,13 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "createUser", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => Boolean),
+    __param(0, (0, type_graphql_1.Arg)("userId", () => type_graphql_1.ID)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UserResolver.prototype, "deleteUser", null);
 UserResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], UserResolver);
