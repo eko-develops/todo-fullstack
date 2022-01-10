@@ -21,7 +21,7 @@ export class Todo extends BaseEntity {
   @Column()
   title: string;
 
-  @Field({ nullable: true })
+  @Field()
   @Column()
   message: string;
 
@@ -29,7 +29,7 @@ export class Todo extends BaseEntity {
   @Column()
   priority: string;
 
-  @Field()
+  @Field(() => ID)
   @Column()
   authorId: number;
 

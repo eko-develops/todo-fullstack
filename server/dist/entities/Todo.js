@@ -26,7 +26,7 @@ __decorate([
     __metadata("design:type", String)
 ], Todo.prototype, "title", void 0);
 __decorate([
-    (0, type_graphql_1.Field)({ nullable: true }),
+    (0, type_graphql_1.Field)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Todo.prototype, "message", void 0);
@@ -36,7 +36,7 @@ __decorate([
     __metadata("design:type", String)
 ], Todo.prototype, "priority", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(),
+    (0, type_graphql_1.Field)(() => type_graphql_1.ID),
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Todo.prototype, "authorId", void 0);
