@@ -9,49 +9,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Todo = void 0;
+exports.User = void 0;
 const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
-let Todo = class Todo extends typeorm_1.BaseEntity {
+let User = class User extends typeorm_1.BaseEntity {
 };
 __decorate([
     (0, type_graphql_1.Field)(() => type_graphql_1.ID),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Todo.prototype, "id", void 0);
+], User.prototype, "id", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Todo.prototype, "title", void 0);
-__decorate([
-    (0, type_graphql_1.Field)({ nullable: true }),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Todo.prototype, "message", void 0);
+], User.prototype, "firstName", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Todo.prototype, "priority", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Todo.prototype, "authorId", void 0);
+], User.prototype, "lastName", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Todo.prototype, "createdAt", void 0);
+], User.prototype, "createdAt", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Todo.prototype, "updatedAt", void 0);
-Todo = __decorate([
+], User.prototype, "updatedAt", void 0);
+User = __decorate([
     (0, type_graphql_1.ObjectType)(),
     (0, typeorm_1.Entity)()
-], Todo);
-exports.Todo = Todo;
-//# sourceMappingURL=Todo.js.map
+], User);
+exports.User = User;
+//# sourceMappingURL=User.js.map

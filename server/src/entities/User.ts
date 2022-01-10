@@ -1,35 +1,27 @@
 import { Field, ID, ObjectType } from "type-graphql";
 import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  Column,
-  BaseEntity,
-  CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
 
 @ObjectType()
 @Entity()
-export class Todo extends BaseEntity {
+export class User extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
   @Column()
-  title: string;
-
-  @Field({ nullable: true })
-  @Column()
-  message: string;
+  firstName: string;
 
   @Field()
   @Column()
-  priority: string;
-
-  @Field()
-  @Column()
-  authorId: number;
+  lastName: string;
 
   @Field()
   @CreateDateColumn()

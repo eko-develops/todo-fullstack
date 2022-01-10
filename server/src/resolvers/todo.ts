@@ -1,9 +1,18 @@
-import { Query, Resolver } from "type-graphql";
+import { Todo } from "../entities/Todo";
+import { Arg, ID, Query, Resolver } from "type-graphql";
 
 @Resolver()
 export class TodoResolver {
-  @Query(() => String)
-  todo() {
-    return "This is a todo";
+  @Query(() => [Todo])
+  async todos(): Promise<Todo[]> {
+    const todos = await Todo.find();
+    return todos;
+  }
+
+  @Query(() => Todo || undefined)
+  async todo(@Arg("id", () => ID) id: number): Promise<Todo | undefined> {
+    const todo = await Todo.findOne(id);
+
+    return todo;
   }
 }
