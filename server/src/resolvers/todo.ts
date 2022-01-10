@@ -24,6 +24,15 @@ class CreateTodoInput {
   priority: string;
 }
 
+@InputType()
+class UpdateTodoInput {
+  @Field(() => String, { nullable: true })
+  title: string;
+
+  @Field(() => String, { nullable: true })
+  message: string;
+}
+
 @Resolver()
 export class TodoResolver {
   @Query(() => [Todo])
@@ -55,6 +64,16 @@ export class TodoResolver {
   @Mutation(() => Boolean)
   async deleteTodo(@Arg("todoId", () => ID) todoId: number): Promise<Boolean> {
     await Todo.delete(todoId);
+
+    return true;
+  }
+
+  @Mutation(() => Boolean)
+  async updateTodo(
+    @Arg("todoId", () => ID) todoId: number,
+    @Arg("options", () => UpdateTodoInput) options: UpdateTodoInput
+  ): Promise<Boolean> {
+    await Todo.update({ id: todoId }, { ...options });
 
     return true;
   }

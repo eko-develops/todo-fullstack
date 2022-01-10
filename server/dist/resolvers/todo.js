@@ -45,6 +45,19 @@ __decorate([
 CreateTodoInput = __decorate([
     (0, type_graphql_1.InputType)()
 ], CreateTodoInput);
+let UpdateTodoInput = class UpdateTodoInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], UpdateTodoInput.prototype, "title", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], UpdateTodoInput.prototype, "message", void 0);
+UpdateTodoInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], UpdateTodoInput);
 let TodoResolver = class TodoResolver {
     todos() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -68,6 +81,12 @@ let TodoResolver = class TodoResolver {
     deleteTodo(todoId) {
         return __awaiter(this, void 0, void 0, function* () {
             yield Todo_1.Todo.delete(todoId);
+            return true;
+        });
+    }
+    updateTodo(todoId, options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield Todo_1.Todo.update({ id: todoId }, Object.assign({}, options));
             return true;
         });
     }
@@ -99,6 +118,14 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], TodoResolver.prototype, "deleteTodo", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => Boolean),
+    __param(0, (0, type_graphql_1.Arg)("todoId", () => type_graphql_1.ID)),
+    __param(1, (0, type_graphql_1.Arg)("options", () => UpdateTodoInput)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, UpdateTodoInput]),
+    __metadata("design:returntype", Promise)
+], TodoResolver.prototype, "updateTodo", null);
 TodoResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], TodoResolver);
