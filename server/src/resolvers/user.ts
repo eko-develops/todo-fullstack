@@ -5,7 +5,7 @@ import { User } from "../entities/User";
 export class UserResolver {
   @Query(() => [User])
   async users(): Promise<User[]> {
-    const users = await User.find();
+    const users = await User.find({ relations: ["todos"] });
 
     return users;
   }

@@ -27,7 +27,7 @@ const User_1 = require("../entities/User");
 let UserResolver = class UserResolver {
     users() {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = yield User_1.User.find();
+            const users = yield User_1.User.find({ relations: ["todos"] });
             return users;
         });
     }
