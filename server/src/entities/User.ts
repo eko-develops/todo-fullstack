@@ -25,7 +25,7 @@ export class User extends BaseEntity {
   @Column()
   lastName: string;
 
-  @Field(() => [Todo])
+  @Field(() => [Todo], { nullable: true })
   @OneToMany(() => Todo, (todo) => todo.author)
   todos: Todo[];
 
