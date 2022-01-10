@@ -24,6 +24,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoResolver = void 0;
 const Todo_1 = require("../entities/Todo");
 const type_graphql_1 = require("type-graphql");
+let CreateTodoInput = class CreateTodoInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], CreateTodoInput.prototype, "title", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => type_graphql_1.ID),
+    __metadata("design:type", Number)
+], CreateTodoInput.prototype, "authorId", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true, defaultValue: null }),
+    __metadata("design:type", Object)
+], CreateTodoInput.prototype, "message", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], CreateTodoInput.prototype, "priority", void 0);
+CreateTodoInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], CreateTodoInput);
 let TodoResolver = class TodoResolver {
     todos() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -37,14 +58,9 @@ let TodoResolver = class TodoResolver {
             return todo;
         });
     }
-    createTodo(authorId, title, message, priority) {
+    createTodo(options) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newTodo = Todo_1.Todo.create({
-                authorId,
-                title,
-                message,
-                priority,
-            });
+            const newTodo = Todo_1.Todo.create(Object.assign({}, options));
             yield Todo_1.Todo.save(newTodo);
             return newTodo;
         });
@@ -57,7 +73,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TodoResolver.prototype, "todos", null);
 __decorate([
-    (0, type_graphql_1.Query)(() => Todo_1.Todo || undefined, { nullable: true }),
+    (0, type_graphql_1.Query)(() => Todo_1.Todo, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)("id", () => type_graphql_1.ID)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -65,12 +81,9 @@ __decorate([
 ], TodoResolver.prototype, "todo", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => Todo_1.Todo),
-    __param(0, (0, type_graphql_1.Arg)("authorId", () => type_graphql_1.ID)),
-    __param(1, (0, type_graphql_1.Arg)("title", () => String)),
-    __param(2, (0, type_graphql_1.Arg)("message", () => String)),
-    __param(3, (0, type_graphql_1.Arg)("priority", () => String)),
+    __param(0, (0, type_graphql_1.Arg)("options", () => CreateTodoInput)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, String, String, String]),
+    __metadata("design:paramtypes", [CreateTodoInput]),
     __metadata("design:returntype", Promise)
 ], TodoResolver.prototype, "createTodo", null);
 TodoResolver = __decorate([

@@ -26,9 +26,9 @@ __decorate([
     __metadata("design:type", String)
 ], Todo.prototype, "title", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    (0, typeorm_1.Column)({ type: "varchar", nullable: true }),
+    __metadata("design:type", Object)
 ], Todo.prototype, "message", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),

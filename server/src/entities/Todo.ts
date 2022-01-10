@@ -21,9 +21,9 @@ export class Todo extends BaseEntity {
   @Column()
   title: string;
 
-  @Field()
-  @Column()
-  message: string;
+  @Field(() => String, { nullable: true })
+  @Column({ type: "varchar", nullable: true })
+  message: string | null;
 
   @Field()
   @Column()
