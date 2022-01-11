@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="w-full h-screen bg-gray-800">
       <Sidebar />
     </div>
   );

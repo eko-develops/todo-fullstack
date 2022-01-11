@@ -2,6 +2,7 @@ import {
   AiFillHome,
   AiOutlineOrderedList,
   AiFillClockCircle,
+  AiFillCalendar,
 } from "react-icons/ai";
 import SidebarIcon from "./SidebarIcon";
 
@@ -19,6 +20,10 @@ const Sidebar: React.FC = () => {
       <div className="flex py-4 hover:bg-gray-700">
         <SidebarIcon icon={<AiFillClockCircle size={16} />} />
         <h2>Pomodoro</h2>
+      </div>
+      <div className="flex py-4 hover:bg-gray-700">
+        <SidebarIcon icon={<AiFillCalendar size={16} />} />
+        <h2>Calendar</h2>
       </div>
     </div>
   );
