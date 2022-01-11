@@ -5,11 +5,7 @@ interface Props {
 }
 
 const SidebarIcon: React.FC<Props> = ({ icon }: Props) => {
-  return (
-    <>
-      <div>{<i className="w-12 h-12">{icon}</i>}</div>
-    </>
-  );
+  return <i className="flex flex-col justify-center mx-2">{icon}</i>;
 };
 
 export default SidebarIcon;
