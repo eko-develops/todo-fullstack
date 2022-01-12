@@ -1,0 +1,9 @@
+query Todos {
+  todos {
+    id
+    title
+    message
+    priority
+    authorId
+  }
+}
