@@ -9,7 +9,7 @@ import SidebarIcon from "./SidebarIcon";
 const Sidebar: React.FC = () => {
   return (
     <div className="top-0 left-0 h-screen w-[200px] m-0 bg-gray-900 text-white flex flex-col shadow-xl">
-      <div className="flex  pl-4 py-4 hover:bg-gray-700">
+      <div className="flex pl-4 py-4 hover:bg-gray-700">
         <SidebarIcon icon={<AiFillHome size={16} />} />
         <h2>Home</h2>
       </div>
