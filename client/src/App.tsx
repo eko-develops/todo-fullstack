@@ -6,22 +6,10 @@ import { Routes, Route } from "react-router-dom";
 import Todos from "./components/Todos";
 import Pomodoro from "./components/Pomodoro";
 import Calendar from "./components/Calendar";
-import { gql, useQuery } from "@apollo/client";
+import { useTodosQuery } from "./generated/graphql";
 
 const App: React.FC = () => {
-  const TODOS_QUERY = gql`
-    query Todos {
-      todos {
-        id
-        title
-        message
-        priority
-        authorId
-      }
-    }
-  `;
-
-  const { loading, error, data } = useQuery(TODOS_QUERY);
+  const { loading, error, data } = useTodosQuery();
 
   console.log(loading, error, data);
 
