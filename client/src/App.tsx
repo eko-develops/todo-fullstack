@@ -6,10 +6,11 @@ import { Routes, Route } from "react-router-dom";
 import Todos from "./components/Todos";
 import Pomodoro from "./components/Pomodoro";
 import Calendar from "./components/Calendar";
-import { useTodosQuery } from "./generated/graphql";
+import { useTodosQuery, useUsersQuery } from "./generated/graphql";
 
 const App: React.FC = () => {
-  const { loading, error, data } = useTodosQuery();
+  // const { loading, error, data } = useTodosQuery();
+  const { loading, error, data } = useUsersQuery();
 
   console.log(loading, error, data);
 

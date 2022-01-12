@@ -1,0 +1,14 @@
+query Users {
+  users {
+    id
+    firstName
+    lastName
+    todos {
+      id
+      title
+      message
+      priority
+      authorId
+    }
+  }
+}
