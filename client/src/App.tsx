@@ -8,7 +8,7 @@ const App: React.FC = () => {
     <div className="w-full h-screen font-poppins bg-gray-800 flex text-white">
       <Sidebar />
       <main className="bg-gray-900 w-5/6 h-5/6 m-auto rounded-lg shadow-xl">
-        <div className="p-8 w-full bg-[red]">
+        <div className="p-8 w-full h-full">
           <Home />
         </div>
       </main>
