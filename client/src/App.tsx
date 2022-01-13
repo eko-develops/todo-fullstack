@@ -6,13 +6,10 @@ import { Routes, Route } from "react-router-dom";
 import Todos from "./components/Todos";
 import Pomodoro from "./components/Pomodoro";
 import Calendar from "./components/Calendar";
-import { useTodosQuery, useUsersQuery } from "./generated/graphql";
+import { useTodosQuery } from "./generated/graphql";
 
 const App: React.FC = () => {
-  // const { loading, error, data } = useTodosQuery();
-  const { loading, error, data } = useUsersQuery();
-
-  console.log(loading, error, data);
+  const todos = { ...useTodosQuery() };
 
   return (
     <div className="w-full h-screen font-poppins bg-gray-800 flex text-white">
@@ -21,7 +18,7 @@ const App: React.FC = () => {
         <div className="p-8 w-full h-full">
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="todos" element={<Todos />}></Route>
+            <Route path="todos" element={<Todos todos={todos} />}></Route>
             <Route path="pomodoro" element={<Pomodoro />}></Route>
             <Route path="calendar" element={<Calendar />}></Route>
           </Routes>
